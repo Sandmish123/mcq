@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>ITIL 4 Foundation Mock Exam</title>
+<html lang="en"><head><meta charset="utf-8"><title>ITIL 4 Mock Exams</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f7fb;--card:#fff;--tx:#1b1f2a;--mut:#667;--bd:#d8dce6;--ac:#3b5bdb;--ok:#2b8a3e;--okb:#e6f6ea;--no:#c92a2a;--nob:#fdeaea}
@@ -26,16 +26,25 @@ button.sec{background:transparent;color:var(--ac);border:1px solid var(--ac)}
 #res .big{font-size:2rem;font-weight:700}
 #res a{color:var(--no);cursor:pointer;margin-right:8px;display:inline-block}
 .note{font-size:.8rem;color:var(--mut)}
+.nav{display:flex;gap:8px;margin:8px 0}.nav button{flex:1;margin:0}.nav button:not(.on){background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.em{display:block;width:100%;box-sizing:border-box;padding:10px;margin:6px 0 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font-size:1rem}
+a.btn{display:inline-block;background:var(--ac);color:#fff!important;padding:10px 18px;border-radius:8px;text-decoration:none;margin:4px 6px 4px 0}
+details{border-top:1px solid var(--bd);padding:6px 0;font-size:.9rem}
 </style></head><body><main>
-<h1>ITIL 4 Foundation – Mock Exam (40 Qs)</h1>
+<h1>ITIL 4 Mock Exams</h1>
+<div class="nav" id="nav"><button data-p="1">Paper 1</button><button data-p="2">Paper 2</button></div>
+<div class="q" id="gate"><p id="gt"></p>
+<label style="cursor:default">Email to receive the result<input class="em" id="em" type="email" placeholder="xyz@gmail.com"></label>
+<button id="start">Start test</button><button class="sec" id="hb">Previous attempts</button>
+<div id="hist" style="display:none;margin-top:10px"></div></div>
+<div id="test" style="display:none">
 <div class="bar"><span id="prog">Answered 0 / 40</span><span>Pass mark: 26 / 40 (65%)</span></div>
-<div id="res"></div>
-<div id="qs"></div>
-<button id="sub">Submit &amp; see score</button><button class="sec" id="rst">Reset</button>
-<p class="note">Answer key was derived from ITIL 4 Foundation knowledge; verify any disputed item against the official ITIL 4 publication.</p>
+<div id="res"></div><div id="qs"></div>
+<button id="sub">Submit &amp; see score</button><button class="sec" id="rst">Reset</button></div>
+<p class="note">Paper 2 key taken from your answer table; Paper 1 key was derived by me, so verify disputed items.</p>
 </main>
 <script>
-const Q=[
+const P1=[
 ["What is the accurate approach to handling incidents?",["Incidents with minimal impact should be handled efficiently, eliminating the need for documentation","Incident Management should employ a uniform process no matter the severity","Incidents with minimal impact should be managed efficiently to minimize the resources needed","Incidents with the least severity should be addressed first"],2],
 ["Which accurately illustrates the interaction of components and activities to enable the creation of value?",["Service value system","Guiding principles","Four dimensions of service management","Service exchange relationship"],0],
 ["Which practice is responsible for introducing new services into operations?",["Change management","Release management","Deployment management","Service level management"],1],
@@ -77,31 +86,97 @@ const Q=[
 ["Which guiding principle recommends using existing services, processes, and tools while improving services?",["Progress iteratively with feedback","Keep it simple and practical","Start where you are","Optimize and automate"],2],
 ["Which are steps in the continual improvement model? (1. What is the vision?, 2. Where do we want to be?, 3. How to measure the progress, 4. Take action)",["1 and 2","1 and 3","1, 2, and 4","All of the above"],2]
 ];
-const L="ABCD",ans={},$=s=>document.querySelector(s);
-let done=false;
-function render(){
- $('#qs').innerHTML=Q.map((q,i)=>`<div class="q" id="q${i}"><p>${i+1}. ${q[0]}</p>`+q[1].map((o,j)=>`<label id="l${i}_${j}"><input type="radio" name="q${i}" value="${j}">${L[j]}. ${o}</label>`).join('')+`<div class="fb"></div></div>`).join('');
- document.querySelectorAll('input').forEach(r=>r.onchange=()=>{
+const F="Focus on Value",S="Start Where You Are",I="Progress Iteratively with Feedback",C="Collaborate and Promote Visibility",H="Think and Work Holistically",K="Keep It Simple and Practical",O="Optimize and Automate";
+const R2=[
+["Which of the following is an ITIL 4 Guiding Principle?",["Manage Every Incident",F,"Control Every Change","Centralize IT Services"]],
+["How many Guiding Principles are defined in ITIL 4?",["5","6","7","8"]],
+["Which principle emphasizes understanding what creates value for consumers and other stakeholders?",[S,F,K,O]],
+["“Focus on Value” primarily means:",["Focus only on reducing IT costs","Focus on creating value for stakeholders","Focus only on technical performance","Focus only on automation"]],
+["Which principle encourages organizations to assess their current situation before making improvements?",[S,H,F,C]],
+["What should an organization do before completely replacing an existing service or process?",["Ignore the existing situation","Start from scratch","Assess what already exists","Automate everything"]],
+["Which principle recommends making improvements in small, manageable steps?",[F,I,O,H]],
+["“Progress Iteratively with Feedback” emphasizes:",["Making one large change at once","Avoiding feedback","Working in iterations and obtaining feedback","Avoiding stakeholder involvement"]],
+["Which principle promotes transparency and cooperation among people and teams?",[C,K,S,F]],
+["What is an important outcome of promoting visibility?",["Less information sharing","Better understanding of work and progress","More organizational silos","Reduced collaboration"]],
+["Which principle encourages considering the complete system rather than isolated components?",[F,H,S,K]],
+["“Think and Work Holistically” means:",["Consider only technical teams","Consider only individual processes","Consider the whole system and its relationships","Consider only the service desk"]],
+["Which principle encourages eliminating unnecessary complexity?",[O,K,F,C]],
+["What should be done with activities that do not contribute to value?",["Increase them","Keep them unchanged","Consider removing them","Automate them immediately"]],
+["Which principle involves using technology to improve work after optimization?",[O,S,F,H]],
+["What should generally happen before automation?",["The process should be optimized","The process should become more complicated","More manual work should be introduced","Feedback should be eliminated"]],
+["Which of the following is NOT one of the seven ITIL 4 Guiding Principles?",[F,S,"Manage Every Incident",O]],
+["A team asks customers what outcomes they actually need before designing a service. Which principle is most directly being applied?",[F,S,K,O]],
+["An organization examines its existing tools and processes before deciding what needs improvement. Which principle is this?",[H,S,F,C]],
+["A project is divided into smaller releases, with feedback collected after each release. Which principle is being applied?",[K,I,O,F]],
+["Two departments share information about their work to avoid duplication and misunderstandings. Which principle applies?",[C,S,F,O]],
+["A company evaluates how a change in one IT process affects other services and teams. Which principle is being applied?",[K,H,F,S]],
+["An organization removes unnecessary approval steps from a simple process. Which principle does this demonstrate?",[I,K,F,C]],
+["A repetitive, well-understood task is automated after the process has been improved. Which principle applies?",[O,S,F,H]],
+["Which principle is most closely associated with understanding stakeholder needs and desired outcomes?",[F,O,S,K]],
+["Which principle discourages organizations from automatically discarding existing capabilities?",[C,S,F,O]],
+["Which principle supports making improvements gradually rather than attempting a massive transformation immediately?",[I,H,K,F]],
+["A team publishes project status information so everyone can understand current progress. Which principle is demonstrated?",[S,C,O,F]],
+["Which principle encourages avoiding a narrow, isolated view of an organization?",[H,F,S,K]],
+["A process has ten steps, but only six are actually necessary. Which principle suggests removing the unnecessary steps?",[O,K,I,F]],
+["Why is automation alone not sufficient according to the “Optimize and Automate” principle?",["Automation is never useful","An inefficient process can simply become an automated inefficient process","Automation should always be avoided","Automation is only for developers"]],
+["Which principle is most relevant when an organization asks, “What value are we trying to achieve?”",[F,S,H,C]],
+["Which principle encourages using existing successful practices where appropriate?",[S,F,O,K]],
+["Which principle emphasizes using feedback to adjust future work?",[H,I,F,C]],
+["Which principle is most directly concerned with teamwork and information sharing?",[O,C,S,F]],
+["Which principle encourages understanding how different components interact with each other?",[H,K,F,I]],
+["Which principle would be most useful when a team has created an unnecessarily complicated solution?",[S,K,C,F]],
+["Which principle is most closely related to improving efficiency through automation?",[O,F,S,H]],
+["Which of the following contains only ITIL 4 Guiding Principles?",[[F,S,O].join(", "),"Manage Incidents, "+F+", "+S,"Service Desk, "+O+", "+H,"Change Management, "+C+", "+F]],
+["Which sequence contains all seven ITIL 4 Guiding Principles?",[[F,S,I,C,H,K,O].join("; "),"Focus on Cost; Start from Scratch; Progress Quickly; Collaborate Internally; Think Technically; Keep Processes Complex; Automate Everything","Manage Incidents; Manage Problems; Manage Changes; Manage Assets; Manage Risks; Manage Services; Manage Suppliers","Plan; Design; Build; Test; Deploy; Monitor; Retire"]]
+];
+const KEY2="BCBBACBCABBCBCAACABB"+"ABBAABABABBAABBABAAA";
+const PAPERS={1:{n:"Paper 1: ITIL 4 Foundation",qs:P1},2:{n:"Paper 2: Guiding Principles",qs:R2.map((q,i)=>[q[0],q[1],KEY2.charCodeAt(i)-65])}};
+const L="ABCD",$=s=>document.querySelector(s),mem={};
+const sg=k=>{try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem[k]??null};
+const ss=(k,v)=>{mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}};
+const hist=p=>{try{return JSON.parse(sg('itil_h'+p)||'[]')}catch(e){return[]}};
+let paper=1,ans={},done=false,email="";
+function histRender(){const h=hist(paper).slice().reverse(),qs=PAPERS[paper].qs;
+ $('#hist').innerHTML=h.length?h.map(a=>`<details><summary>${a.t} — <b>${a.s}/40</b> (${a.w.length} wrong)</summary>`+(a.w.length?a.w.map(([i,y])=>`<div>Q${i+1}: ${y<0?'skipped':'you '+L[y]}, correct ${L[qs[i][2]]}</div>`).join(''):'Perfect score')+`</details>`).join(''):'<p class="note">No previous attempts for this paper yet.</p>';}
+function show(p,open){paper=p;done=false;ans={};
+ document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',+b.dataset.p==p));
+ $('#gate').style.display='block';$('#test').style.display='none';
+ $('#gt').textContent=PAPERS[p].n+' · '+PAPERS[p].qs.length+' questions';
+ $('#em').value=sg('itil_email')||'';histRender();$('#hist').style.display=open?'block':'none';window.scrollTo(0,0);}
+function render(){done=false;for(const k in ans)delete ans[k];$('#res').style.display='none';$('#sub').disabled=false;$('#prog').textContent='Answered 0 / 40';
+ const qs=PAPERS[paper].qs;
+ $('#qs').innerHTML=qs.map((q,i)=>`<div class="q" id="q${i}"><p>${i+1}. ${q[0]}</p>`+q[1].map((o,j)=>`<label id="l${i}_${j}"><input type="radio" name="q${i}" value="${j}">${L[j]}. ${o}</label>`).join('')+`<div class="fb"></div></div>`).join('');
+ document.querySelectorAll('#qs input').forEach(r=>r.onchange=()=>{
   if(done)return;const i=+r.name.slice(1);ans[i]=+r.value;
-  Q[i][1].forEach((_,j)=>$('#l'+i+'_'+j).classList.toggle('sel',j==ans[i]));
+  qs[i][1].forEach((_,j)=>$('#l'+i+'_'+j).classList.toggle('sel',j==ans[i]));
   $('#prog').textContent=`Answered ${Object.keys(ans).length} / 40`;});
 }
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(+b.dataset.p));
+$('#hb').onclick=()=>{const h=$('#hist');h.style.display=h.style.display=='none'?'block':'none'};
+$('#start').onclick=()=>{const e=$('#em').value.trim();
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){alert('Please enter a valid email address.');return}
+ email=e;ss('itil_email',e);$('#gate').style.display='none';$('#test').style.display='block';render();window.scrollTo(0,0)};
 $('#sub').onclick=()=>{
- const un=Q.map((_,i)=>i).filter(i=>!(i in ans));
+ const qs=PAPERS[paper].qs,un=qs.map((_,i)=>i).filter(i=>!(i in ans));
  if(un.length&&!confirm(un.length+' question(s) unanswered (counted as wrong). Submit anyway?'))return;
- done=true;let s=0,wrong=[];
- Q.forEach((q,i)=>{
+ done=true;$('#sub').disabled=true;let s=0,wrong=[];
+ qs.forEach((q,i)=>{
   const ok=ans[i]===q[2];if(ok)s++;else wrong.push(i);
   const box=$('#q'+i);box.classList.add(ok?'good':'bad');
   q[1].forEach((_,j)=>{const l=$('#l'+i+'_'+j);l.classList.remove('sel');l.querySelector('input').disabled=true;
    if(j==q[2])l.classList.add('right');else if(j==ans[i])l.classList.add('wrong');});
   box.querySelector('.fb').innerHTML=ok?`<span style="color:var(--ok)">✔ Correct</span>`:`<span style="color:var(--no)">✘ ${i in ans?'Your answer: '+L[ans[i]]:'Not answered'} — Correct answer: ${L[q[2]]}</span>`;
  });
+ const h=hist(paper);h.push({t:new Date().toLocaleString(),s,w:wrong.map(i=>[i,i in ans?ans[i]:-1])});ss('itil_h'+paper,JSON.stringify(h.slice(-20)));
+ const pct=Math.round(s/40*100),verdict=s>=26?'Pass':'Below pass mark';
+ const body=`ITIL 4 – ${PAPERS[paper].n}\nScore: ${s}/40 (${pct}%) – ${verdict}\nWrong: ${wrong.length}\n\n`+wrong.map(i=>`Q${i+1}: ${i in ans?'your '+L[ans[i]]:'skipped'}, correct ${L[qs[i][2]]}`).join('\n');
+ const href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('ITIL 4 '+PAPERS[paper].n+' result: '+s+'/40')}&body=${encodeURIComponent(body)}`;
  const r=$('#res');r.style.display='block';
- r.innerHTML=`<div class="big">${s} / 40 (${Math.round(s/40*100)}%)</div><div>${s>=26?'🎉 Pass':'Below pass mark (26)'} · ${wrong.length} wrong</div>`+
-  (wrong.length?`<p><b>Wrong questions (tap to jump):</b><br>${wrong.map(i=>`<a onclick="document.getElementById('q${i}').scrollIntoView({behavior:'smooth'})">Q${i+1}</a>`).join('')}</p>`:'<p>Perfect score!</p>');
+ r.innerHTML=`<div class="big">${s} / 40 (${pct}%)</div><div>${s>=26?'🎉 Pass':'Below pass mark (26)'} · ${wrong.length} wrong</div>`+
+  (wrong.length?`<p><b>Wrong questions (tap to jump):</b><br>${wrong.map(i=>`<a onclick="document.getElementById('q${i}').scrollIntoView({behavior:'smooth'})">Q${i+1}</a>`).join('')}</p>`:'<p>Perfect score!</p>')+
+  `<a class="btn" href="${href}" target="_blank" rel="noopener">✉ Email result to ${email}</a><button class="sec" onclick="show(paper,true)">Previous attempts</button>`;
  window.scrollTo({top:0,behavior:'smooth'});
 };
-$('#rst').onclick=()=>{done=false;for(const k in ans)delete ans[k];$('#res').style.display='none';$('#prog').textContent='Answered 0 / 40';render();window.scrollTo(0,0)};
-render();
+$('#rst').onclick=()=>{render();window.scrollTo(0,0)};
+show(1);
 </script></body></html>
