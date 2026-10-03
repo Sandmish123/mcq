@@ -26,22 +26,22 @@ button.sec{background:transparent;color:var(--ac);border:1px solid var(--ac)}
 #res .big{font-size:2rem;font-weight:700}
 #res a{color:var(--no);cursor:pointer;margin-right:8px;display:inline-block}
 .note{font-size:.8rem;color:var(--mut)}
-.nav{display:flex;gap:8px;margin:8px 0}.nav button{flex:1;margin:0}.nav button:not(.on){background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.nav button{flex:1 1 90px;margin:0;padding:10px 6px}.nav button:not(.on){background:transparent;color:var(--ac);border:1px solid var(--ac)}
 .em{display:block;width:100%;box-sizing:border-box;padding:10px;margin:6px 0 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font-size:1rem}
 a.btn{display:inline-block;background:var(--ac);color:#fff!important;padding:10px 18px;border-radius:8px;text-decoration:none;margin:4px 6px 4px 0}
 details{border-top:1px solid var(--bd);padding:6px 0;font-size:.9rem}
 </style></head><body><main>
 <h1>ITIL 4 Mock Exams</h1>
-<div class="nav" id="nav"><button data-p="1">Paper 1</button><button data-p="2">Paper 2</button></div>
+<div class="nav" id="nav"><button data-p="1">Paper 1</button><button data-p="2">Paper 2</button><button data-p="3">Paper 3</button><button data-p="4">Paper 4</button><button data-p="5">Paper 5</button></div>
 <div class="q" id="gate"><p id="gt"></p>
 <label style="cursor:default">Email to receive the result<input class="em" id="em" type="email" placeholder="xyz@gmail.com"></label>
 <button id="start">Start test</button><button class="sec" id="hb">Previous attempts</button>
 <div id="hist" style="display:none;margin-top:10px"></div></div>
 <div id="test" style="display:none">
-<div class="bar"><span id="prog">Answered 0 / 40</span><span>Pass mark: 26 / 40 (65%)</span></div>
+<div class="bar"><span id="prog"></span><span id="pm"></span></div>
 <div id="res"></div><div id="qs"></div>
 <button id="sub">Submit &amp; see score</button><button class="sec" id="rst">Reset</button></div>
-<p class="note">Paper 2 key taken from your answer table; Paper 1 key was derived by me, so verify disputed items.</p>
+<p class="note">Paper 1 is unchanged (key derived earlier, verify disputed items). Papers 2–5 are advanced papers. Option order is shuffled and the key is stored by correct answer, not by position.</p>
 </main>
 <script>
 const P1=[
@@ -86,70 +86,193 @@ const P1=[
 ["Which guiding principle recommends using existing services, processes, and tools while improving services?",["Progress iteratively with feedback","Keep it simple and practical","Start where you are","Optimize and automate"],2],
 ["Which are steps in the continual improvement model? (1. What is the vision?, 2. Where do we want to be?, 3. How to measure the progress, 4. Take action)",["1 and 2","1 and 3","1, 2, and 4","All of the above"],2]
 ];
-const F="Focus on Value",S="Start Where You Are",I="Progress Iteratively with Feedback",C="Collaborate and Promote Visibility",H="Think and Work Holistically",K="Keep It Simple and Practical",O="Optimize and Automate";
-const R2=[
-["Which of the following is an ITIL 4 Guiding Principle?",["Manage Every Incident",F,"Control Every Change","Centralize IT Services"]],
-["How many Guiding Principles are defined in ITIL 4?",["5","6","7","8"]],
-["Which principle emphasizes understanding what creates value for consumers and other stakeholders?",[S,F,K,O]],
-["“Focus on Value” primarily means:",["Focus only on reducing IT costs","Focus on creating value for stakeholders","Focus only on technical performance","Focus only on automation"]],
-["Which principle encourages organizations to assess their current situation before making improvements?",[S,H,F,C]],
-["What should an organization do before completely replacing an existing service or process?",["Ignore the existing situation","Start from scratch","Assess what already exists","Automate everything"]],
-["Which principle recommends making improvements in small, manageable steps?",[F,I,O,H]],
-["“Progress Iteratively with Feedback” emphasizes:",["Making one large change at once","Avoiding feedback","Working in iterations and obtaining feedback","Avoiding stakeholder involvement"]],
-["Which principle promotes transparency and cooperation among people and teams?",[C,K,S,F]],
-["What is an important outcome of promoting visibility?",["Less information sharing","Better understanding of work and progress","More organizational silos","Reduced collaboration"]],
-["Which principle encourages considering the complete system rather than isolated components?",[F,H,S,K]],
-["“Think and Work Holistically” means:",["Consider only technical teams","Consider only individual processes","Consider the whole system and its relationships","Consider only the service desk"]],
-["Which principle encourages eliminating unnecessary complexity?",[O,K,F,C]],
-["What should be done with activities that do not contribute to value?",["Increase them","Keep them unchanged","Consider removing them","Automate them immediately"]],
-["Which principle involves using technology to improve work after optimization?",[O,S,F,H]],
-["What should generally happen before automation?",["The process should be optimized","The process should become more complicated","More manual work should be introduced","Feedback should be eliminated"]],
-["Which of the following is NOT one of the seven ITIL 4 Guiding Principles?",[F,S,"Manage Every Incident",O]],
-["A team asks customers what outcomes they actually need before designing a service. Which principle is most directly being applied?",[F,S,K,O]],
-["An organization examines its existing tools and processes before deciding what needs improvement. Which principle is this?",[H,S,F,C]],
-["A project is divided into smaller releases, with feedback collected after each release. Which principle is being applied?",[K,I,O,F]],
-["Two departments share information about their work to avoid duplication and misunderstandings. Which principle applies?",[C,S,F,O]],
-["A company evaluates how a change in one IT process affects other services and teams. Which principle is being applied?",[K,H,F,S]],
-["An organization removes unnecessary approval steps from a simple process. Which principle does this demonstrate?",[I,K,F,C]],
-["A repetitive, well-understood task is automated after the process has been improved. Which principle applies?",[O,S,F,H]],
-["Which principle is most closely associated with understanding stakeholder needs and desired outcomes?",[F,O,S,K]],
-["Which principle discourages organizations from automatically discarding existing capabilities?",[C,S,F,O]],
-["Which principle supports making improvements gradually rather than attempting a massive transformation immediately?",[I,H,K,F]],
-["A team publishes project status information so everyone can understand current progress. Which principle is demonstrated?",[S,C,O,F]],
-["Which principle encourages avoiding a narrow, isolated view of an organization?",[H,F,S,K]],
-["A process has ten steps, but only six are actually necessary. Which principle suggests removing the unnecessary steps?",[O,K,I,F]],
-["Why is automation alone not sufficient according to the “Optimize and Automate” principle?",["Automation is never useful","An inefficient process can simply become an automated inefficient process","Automation should always be avoided","Automation is only for developers"]],
-["Which principle is most relevant when an organization asks, “What value are we trying to achieve?”",[F,S,H,C]],
-["Which principle encourages using existing successful practices where appropriate?",[S,F,O,K]],
-["Which principle emphasizes using feedback to adjust future work?",[H,I,F,C]],
-["Which principle is most directly concerned with teamwork and information sharing?",[O,C,S,F]],
-["Which principle encourages understanding how different components interact with each other?",[H,K,F,I]],
-["Which principle would be most useful when a team has created an unnecessarily complicated solution?",[S,K,C,F]],
-["Which principle is most closely related to improving efficiency through automation?",[O,F,S,H]],
-["Which of the following contains only ITIL 4 Guiding Principles?",[[F,S,O].join(", "),"Manage Incidents, "+F+", "+S,"Service Desk, "+O+", "+H,"Change Management, "+C+", "+F]],
-["Which sequence contains all seven ITIL 4 Guiding Principles?",[[F,S,I,C,H,K,O].join("; "),"Focus on Cost; Start from Scratch; Progress Quickly; Collaborate Internally; Think Technically; Keep Processes Complex; Automate Everything","Manage Incidents; Manage Problems; Manage Changes; Manage Assets; Manage Risks; Manage Services; Manage Suppliers","Plan; Design; Build; Test; Deploy; Monitor; Retire"]]
-];
-const KEY2="BCBBACBCABBCBCAACABB"+"ABBAABABABBAABBABAAA";
-const PAPERS={1:{n:"Paper 1: ITIL 4 Foundation",qs:P1},2:{n:"Paper 2: Guiding Principles",qs:R2.map((q,i)=>[q[0],q[1],KEY2.charCodeAt(i)-65])}};
+const T2=`During a redesign, a team watches how engineers actually resolve incidents instead of relying on the documented procedure. Which principle does this primarily reflect?|Start where you are;Focus on value;Think and work holistically;Optimize and automate
+A 12-field request form is cut to 4 fields because the removed fields produce no outcome anyone uses. Which principle most directly drives this?|Keep it simple and practical;Start where you are;Progress iteratively with feedback;Think and work holistically
+A manager wants to automate an approval chain containing seven redundant sign-offs. What does the guidance recommend first?|Simplify and optimize the process, then automate it;Automate immediately to remove human effort;Add monitoring to the manual steps;Outsource the approvals to a supplier
+Which statement about the guiding principles is most accurate?|They are recommendations that guide decisions in any circumstance and are not prescriptive rules;They must be applied in a fixed numeric order;They apply only to the design of new services;They apply only to the improve value chain activity
+A project plan delivers nothing for 14 months, with user feedback only at go-live. Which principle is most directly breached?|Progress iteratively with feedback;Start where you are;Optimize and automate;Keep it simple and practical
+Network and application teams each tune their own metrics, yet customer transactions get slower overall. Which principle best addresses this local-optimization problem?|Think and work holistically;Start where you are;Optimize and automate;Focus on value
+Which is a recommendation within Focus on value?|Know who the service consumer is and include customer and user experience;Always choose the lowest-cost option;Standardize every process;Reuse every existing tool
+Why does Collaborate and promote visibility favour working across boundaries?|It brings greater buy-in, relevance and likelihood of long-term success;It always reduces cost;It removes the need for measurement;It makes documentation unnecessary
+Staff cannot see why priorities keep changing because decisions are logged only for managers, and trust is dropping. Which principle best addresses this?|Collaborate and promote visibility;Start where you are;Optimize and automate;Keep it simple and practical
+Which benefit does iterative working most directly claim?|Fast feedback lets work adapt to change and respond to stakeholders;It removes the need for planning;It guarantees lower cost;It removes the need for stakeholder involvement
+What does Start where you are warn against?|Discarding existing services, processes and skills without assessing what can be reused;Taking any measurements at all;Delaying every decision until all data exist;Involving the consumer in design
+Which principle asks you to consider all four dimensions and the whole service value system when making a change?|Think and work holistically;Focus on value;Keep it simple and practical;Progress iteratively with feedback
+Teams are told to deliver in small increments yet also to consider the whole system. What is the correct reading of the principles?|They are interrelated, so work in small steps while keeping the wider context in view;Holistic thinking overrides iteration, so large releases are always preferred;Iteration overrides holistic thinking, so wider impacts can be ignored;The principles cannot be used together
+Which action is NOT consistent with Optimize and automate?|Automating a process before it has been understood or simplified;Reserving human intervention for where it adds value;Making the best use of the organization's resources;Optimizing a process before automating it
+In Optimize and automate, what does it mean to optimize something?|Make it as effective and useful as it can be;Make it as cheap as possible;Remove all human work from it;Move it to the cloud
+Which principle recommends using the minimum number of steps needed to accomplish an objective?|Keep it simple and practical;Optimize and automate;Start where you are;Progress iteratively with feedback
+A support team hits every uptime target, yet customers say the service does not help them achieve their goals. Which principle shows value was defined wrongly?|Focus on value;Start where you are;Optimize and automate;Keep it simple and practical
+Which principle says to select the right people to collaborate with and to communicate in a way the audience will understand?|Collaborate and promote visibility;Focus on value;Start where you are;Keep it simple and practical
+How should an organization treat the seven guiding principles when making a decision?|Consider all of them, recognizing that some will matter more in a given situation;Apply whichever is easiest;Apply them in numeric order;Apply only the one preferred by the process owner
+A team replaces a working monitoring tool without assessing it first, and loses alerts people relied on. Which principle was neglected?|Start where you are;Focus on value;Progress iteratively with feedback;Collaborate and promote visibility
+Managers are repeatedly surprised by delays because teams do not show work in progress. Which principle addresses this?|Collaborate and promote visibility;Optimize and automate;Start where you are;Think and work holistically
+A team ships a minimal increment, learns from usage data that a feature is unused, and changes direction. Which principle is applied?|Progress iteratively with feedback;Keep it simple and practical;Focus on value;Think and work holistically
+A new self-service portal ignores its effect on service desk workload, security and suppliers. Which principle was overlooked?|Think and work holistically;Start where you are;Optimize and automate;Keep it simple and practical
+According to Focus on value, who ultimately determines what is valuable?|The service consumer and other stakeholders;The provider's finance team;The service desk;The CIO alone
+A robot approves requests in 3 seconds, but 40% are later rejected downstream. What does the automation principle warn about?|Automating an unoptimized process just produces a faster poor process;Automation always reduces quality;Humans must approve everything;Rejections prove the automation is working
+Which behaviour reflects Progress iteratively with feedback for a large initiative?|Break it into smaller sections that can be completed and assessed in a timely manner;Run it as one big-bang release;Wait for final approval before any feedback;Fix scope at the start and avoid change
+A team spends six months perfecting a process for a rare, minor activity. Which principle best corrects this disproportionate effort?|Keep it simple and practical;Start where you are;Collaborate and promote visibility;Think and work holistically
+Which is a recommendation of Start where you are?|Measure or observe directly rather than relying on assumptions;Redesign from scratch to avoid legacy;Avoid measuring existing performance;Assume existing services are inadequate
+Which behaviour would NOT fit Collaborate and promote visibility?|Working in silos to preserve specialist ownership;Involving the right people;Sharing information openly;Building trust across teams
+Priorities pull in opposing directions, for example simplicity versus considering the whole system. How does ITIL advise handling this?|Use judgement about which principles are relevant and how they interact;Always follow the first principle listed;Always follow Keep it simple and practical;Ignore the conflicting principle
+Developers, testers and operations share one backlog and board to reduce hand-offs. Which principle is most directly applied?|Collaborate and promote visibility;Optimize and automate;Start where you are;Keep it simple and practical
+Which principle holds that human intervention should be used only where it adds value?|Optimize and automate;Focus on value;Start where you are;Progress iteratively with feedback
+Which statement about Think and work holistically is correct?|It requires considering the four dimensions and SVS components and working across boundaries to see the whole;It is relevant only during service design;It means optimizing each team independently;It applies only to technical teams
+Which principle sequence describes eliminating an unused manual step and then automating what remains?|Keep it simple and practical, then Optimize and automate;Optimize and automate, then Keep it simple and practical;Start where you are, then Focus on value;Collaborate and promote visibility, then Start where you are
+Why does iterating in small steps reduce risk?|Smaller steps limit exposure and let teams change direction based on evidence;It removes the need to test;It guarantees the first version is correct;It eliminates dependencies
+Which is NOT one of the seven ITIL 4 guiding principles?|Design for experience;Keep it simple and practical;Start where you are;Collaborate and promote visibility
+Which principle says anything that fails to provide value or produce a useful outcome should be eliminated?|Keep it simple and practical;Start where you are;Think and work holistically;Optimize and automate
+What does it mean that the guiding principles are universal?|They apply to any initiative regardless of goals, strategy, type of work or management structure;They apply only to IT teams;They apply only to new services;They apply only to the improve activity
+How do the guiding principles relate to Agile, Lean and DevOps?|They embody and are consistent with the thinking behind these approaches;They contradict them;They replace them;They apply only to waterfall projects
+Which statement about Focus on value and cost is most accurate?|Value weighs outcomes, costs and risks for stakeholders and is not simply the lowest cost;Focus on value means always choosing the cheapest option;Value excludes costs;Value concerns only revenue`;
+const T3=`A board must choose among 40 competing initiatives within a fixed budget and limited staff. Which practice ensures the right mix of programmes, projects, products and services?|Portfolio management;Project management;Strategy management;Service financial management
+Which statement best distinguishes organizational change management from change enablement?|OCM manages the human aspects of organizational change, while change enablement controls risk when authorizing changes to services and products;They are synonyms;OCM applies only to IT infrastructure;Change enablement manages the people side of change
+A CRM goes live on time and on budget, but staff keep using spreadsheets. Which practice would most directly have improved adoption?|Organizational change management;Project management;Supplier management;Architecture management
+Which practice formulates the organization's goals and objectives, adopts courses of action and allocates resources to meet long-term needs?|Strategy management;Portfolio management;Project management;Architecture management
+A provider sees a supplier's possible failure as both a threat and a chance to renegotiate. Which view of risk in ITIL 4 supports this?|Risk can be uncertainty of outcome, including positive as well as negative results;Risk is only ever negative;Risk concerns only security;Risk disappears once controls exist
+A supplier provides unique components, has high impact on service, and few alternatives exist. How is it categorized?|Strategic;Tactical;Operational;Commodity
+Which practice establishes and nurtures links between the organization and its stakeholders at strategic and tactical levels?|Relationship management;Supplier management;Knowledge management;Portfolio management
+What is the purpose of a continual improvement register?|To track and manage improvement ideas from identification to action;To store configuration items;To record every incident;To log supplier contracts
+An organization maps its capabilities, applications, data and infrastructure to show how they support strategy. Which practice does this?|Architecture management;Knowledge management;Portfolio management;Measurement and reporting
+Which practice supports decision-making and improvement by decreasing uncertainty through good-quality information on performance?|Measurement and reporting;Knowledge management;Continual improvement;Risk management
+Which statement describes the purpose of knowledge management?|Maintain and improve the effective, efficient and convenient use of information and knowledge;Ensure the right mix of products and services;Ensure suppliers are managed appropriately;Protect information from unauthorized access
+Which practice covers budgeting, accounting and charging for services?|Service financial management;Portfolio management;Measurement and reporting;Supplier management
+After a restructure, roles must be redefined so the right skills sit in the right roles at the right time. Which practice applies?|Workforce and talent management;Organizational change management;Knowledge management;Strategy management
+A project uses a fixed upfront plan with sequential stages and formal change control. Which project approach is this?|Predictive;Iterative;Hybrid;Kanban
+Which set contains one practice from each group of general, service and technical management practices?|Risk management, Incident management, Deployment management;Strategy management, Supplier management, Release management;Portfolio management, Availability management, Incident management;Service desk, Software development and management, Infrastructure and platform management
+Which of these is a service management practice rather than a general management practice?|Business analysis;Architecture management;Portfolio management;Workforce and talent management
+Which of these is a general management practice rather than a service management practice?|Service financial management;IT asset management;Service continuity management;Service validation and testing
+Besides confidentiality, integrity and availability, which attributes does information security management also cover?|Authenticity and non-repudiation;Scalability and elasticity;Resilience and fault tolerance;Portability and traceability
+A dashboard has 300 metrics, none linked to an objective. Which principle of good measurement is breached?|Metrics should be tied to objectives and decisions;Metrics should be as numerous as possible;Metrics should be collected only when easy;Metrics should avoid outcomes
+How should reports be designed in ITIL 4?|Tailored to the audience and the decisions they must make;Identical for every audience;Containing all available data;Produced only when problems occur
+Which practice ensures that all projects in the organization are successfully delivered?|Project management;Portfolio management;Strategy management;Organizational change management
+Which statement about strategy and portfolio management is correct?|Strategy sets direction, and portfolio management selects investments to realize it;Portfolio management defines the strategy;They are the same practice;They are unrelated
+Who should be involved in continual improvement according to ITIL 4?|People at all levels of the organization;Only the continual improvement manager;Only service owners;Only external consultants
+What describes a commodity supplier?|One that is easily replaceable with low cost and impact;One providing unique critical components;One with long-term joint planning;One owning intellectual property
+Which approach underpins information security management?|A risk-based approach with proportionate controls;Maximum controls everywhere;Compliance paperwork only;Blocking all access by default
+Which practice would decide whether to accept a residual risk within a defined risk appetite?|Risk management;Portfolio management;Knowledge management;Architecture management
+Which is the correct ascending order of the DIKW hierarchy?|Data, information, knowledge, wisdom;Information, data, wisdom, knowledge;Knowledge, data, information, wisdom;Data, knowledge, information, wisdom
+Which practice assesses whether a proposed platform fits the target technology landscape of the organization?|Architecture management;Supplier management;Workforce and talent management;Service financial management
+Which is NOT a general management practice?|Incident management;Strategy management;Supplier management;Relationship management
+A hybrid project approach is best described as:|Combining predictive and iterative elements;Using only waterfall stages;Using only timeboxed iterations;Using no formal plan
+Leadership wants a documented long-term direction covering mission, vision and objectives. Which practice?|Strategy management;Portfolio management;Project management;Continual improvement
+A policy requires data classification and access control to protect information assets. Which practice?|Information security management;Risk management;Architecture management;Knowledge management
+Management asks for a regular scorecard showing progress against objectives. Which practice?|Measurement and reporting;Strategy management;Portfolio management;Knowledge management
+Teams keep rediscovering the same fixes because solutions are scattered in chat logs. Which practice addresses this?|Knowledge management;Measurement and reporting;Continual improvement;Architecture management
+Executives need to understand how business, application and technology layers interrelate before approving a change. Which practice?|Architecture management;Portfolio management;Project management;Relationship management
+A supplier's quarterly review shows repeated SLA breaches. Which practice manages supplier performance?|Supplier management;Relationship management;Service financial management;Risk management
+Regular meetings with business sponsors are held to understand expectations and satisfaction. Which practice?|Relationship management;Supplier management;Strategy management;Measurement and reporting
+A team ranks improvement ideas by value, effort and risk and records them in a register. Which practice?|Continual improvement;Project management;Portfolio management;Organizational change management
+Which practice would decide to stop an underperforming programme to free funds for higher-value work?|Portfolio management;Project management;Risk management;Continual improvement
+Which practice attracts, develops and retains people with the competencies the organization needs?|Workforce and talent management;Organizational change management;Knowledge management;Relationship management`;
+const T4=`Intermittent database timeouts caused 14 incidents this quarter, each fixed by restarting the service. Which practice should find the cause, and what is the restart?|Problem management, and the restart is a workaround;Incident management, and the restart is a known error;Change enablement, and the restart is a standard change;Service request management, and the restart is a request model
+Which describes a known error?|A problem that has been analyzed but not resolved;An incident that has been closed;A change awaiting approval;A resolved problem
+Which is a defining characteristic of a service request?|A user-initiated, pre-defined request for something to be provided, usually low risk;An unplanned interruption to a service;A cause of incidents;A proposal to change architecture
+A request to install approved software is low risk and pre-authorized. If handled as a change, which type is it and when is it authorized?|Standard change, authorized in advance when the procedure is created;Normal change, authorized by a CAB each time;Emergency change, authorized afterwards;Standard change, authorized by the CEO each time
+Which statement about change authority in ITIL 4 is most accurate?|It should match the type and risk of the change and may be decentralized, for example through peer review;A CAB must approve every change;It is always the CIO;It is always the change manager
+What distinguishes an emergency change?|It must be implemented as soon as possible, for example to resolve a major incident or apply a security patch;It is pre-authorized;It is always low risk;It never needs assessment
+A new version is deployed but hidden behind a feature flag until marketing approves. Which practice governs making it available to users?|Release management;Deployment management;Service design;Incident management
+Which statement about the service desk is correct?|It need not be a physical location and can be virtual and omnichannel;It must be a physical room;It handles only incidents;It owns problem resolution
+Disk usage passes a warning threshold but the service still works. How is this event classified?|Warning;Informational;Exception;Incident
+A monitoring tool sends a notification that a threshold was reached or something failed. What is this called?|An alert;A known error;A problem;A release
+On what should service level targets primarily be based?|Business-based outcomes and customer needs agreed with customers;Only technical metrics;Whatever is easiest to measure;Provider internal targets only
+A report shows every SLA metric green while customers are unhappy. What is this commonly called?|Watermelon effect;Hawthorne effect;Pareto principle;Domino effect
+Which measure indicates how long a component typically operates before failing?|Mean time between failures;Mean time to restore service;Recovery time objective;Recovery point objective
+How does ITIL describe performance in capacity and performance management?|A measure of what is achieved or delivered;Maximum throughput of a service;The cost of a service;Number of users
+Which analysis identifies the most critical services and the impact of losing them, as input to continuity planning?|Business impact analysis;Capacity modelling;Service blueprint review;Customer survey
+A flood destroys the primary data centre. Which practice owns the plan to restore services after such a disaster?|Service continuity management;Availability management;Incident management;Capacity and performance management
+How do IT asset management and service configuration management differ?|ITAM focuses on asset lifecycle, financial and contractual value, while configuration management focuses on CI relationships supporting services;ITAM tracks relationships and configuration management tracks cost;They are identical;ITAM covers only software
+What is held in a configuration management database?|Configuration items, their attributes and relationships;Known errors only;Service offerings only;The change schedule
+Which term describes a formal description of one or more services designed to address the needs of a target consumer group?|Service offering;Service request;Service level;Release
+Which statement describes the aim of service design?|Design products and services that are fit for purpose, fit for use and deliverable by the organization and partners;Operate the live service;Authorize changes;Track assets
+Which pairing is correct?|Utility is fit for purpose, and warranty is fit for use;Utility is fit for use, and warranty is fit for purpose;Both mean fit for purpose;Both mean fit for use
+Which statement about business analysis is correct?|It can extend to any part of the organization and is not limited to IT;It covers only software requirements;It covers only financial analysis;It applies only to projects
+Which statement about major incidents in ITIL 4 is correct?|They need a separate procedure with shorter timescales and greater urgency;They follow the normal incident process;They are always problems;They are always changes
+Which technique has people collaborate on an incident together instead of passing it sequentially?|Swarming;Functional escalation;Hierarchical escalation;Workaround
+Informing senior management about a major incident is an example of:|Hierarchical escalation;Functional escalation;Swarming;Triage
+What are the three phases of problem management in ITIL 4?|Problem identification, problem control and error control;Detection, logging and resolution;Plan, do and check;Identify, classify and close
+Which technique repeatedly asks why to trace a root cause?|Five whys;Pareto analysis;SWOT analysis;PESTLE analysis
+A user asks for access to a restricted data set that needs the data owner's approval. How is this handled?|As a service request with an approval step;As an incident;As a problem;As an emergency change
+A forecast shows storage will be exhausted in four months. Which practice is most relevant?|Capacity and performance management;Incident management;Service level management;Release management
+A new payment module must be checked against acceptance criteria before release. Which practice?|Service validation and testing;Change enablement;Deployment management;Problem management
+Which practice provides a single source of consistent information on all services and offerings?|Service catalogue management;Service configuration management;Service level management;Business analysis
+Which practice ensures services deliver agreed availability by managing reliability, maintainability and security?|Availability management;Service continuity management;Capacity and performance management;Incident management
+Which practice observes services and records selected changes of state as events?|Monitoring and event management;Incident management;Problem management;Service desk
+Which practice reduces the likelihood and impact of incidents by identifying causes and managing workarounds and known errors?|Problem management;Incident management;Change enablement;Service request management
+Which practice maximizes successful IT changes by assessing risk and authorizing changes to proceed?|Change enablement;Release management;Deployment management;Service validation and testing
+Which practice sets business-based targets for service performance and manages quality against them?|Service level management;Availability management;Relationship management;Service design
+Which practice captures demand for incident resolution and service requests?|Service desk;Incident management;Service request management;Problem management
+Which practice analyzes a business need and recommends solutions that create value?|Business analysis;Service design;Strategy management;Service level management
+Which practice maintains lifecycle, cost and warranty records for a laptop issued under a hardware refresh?|IT asset management;Service configuration management;Service desk;Release management
+How is incident priority typically determined?|By impact and urgency;By cost and revenue;By age of the ticket;By seniority of the caller`;
+const T5=`Which practice moves new or changed hardware, software, documentation, processes or other components to live or other environments?|Deployment management;Release management;Change enablement;Service design
+A feature is deployed to production but switched off by a toggle. Which statement is correct?|Deployment has occurred but release has not;Release has occurred but deployment has not;Neither has occurred;Both have occurred
+A whole estate is changed in one weekend and rollback is hard. Which approach is this, and what is its main risk?|Big bang deployment, with a defect affecting all targets at once;Phased deployment, with low exposure;Pull deployment, with user-driven timing;Continuous delivery, with no risk
+What is the main advantage of phased deployment?|It limits exposure and lets teams learn before wider rollout;It is the fastest approach;It needs no rollback plan;It avoids testing
+In a pull deployment approach, who initiates installation?|The user or target environment retrieves the update when ready;The provider pushes it to all targets;The change authority;The service desk
+What does continuous delivery mean?|Changes are kept deployable so they can go to production on demand;Every commit is automatically released to users with no gates;Releases happen only once a year;Code is merged manually each quarter
+What does continuous integration involve?|Frequently merging code into a shared repository with automated build and tests;Integrating only at project end;Deploying hourly to production;Merging manually each quarter
+Which practice manages cloud, on-premises servers, networks, storage and middleware platforms?|Infrastructure and platform management;Software development and management;Deployment management;Service catalogue management
+Under IaaS, what is the consumer typically responsible for?|Operating system, middleware and applications;Physical data centres;The hypervisor;Hardware maintenance
+A team deploys its own code onto a provider-managed runtime and never manages operating systems. Which model?|Platform as a service;Infrastructure as a service;Software as a service;Private cloud
+Which is a feature of software as a service?|The provider manages the application and underlying stack, and the consumer simply uses it;The consumer manages the operating system;The consumer deploys the hypervisor;The consumer owns the hardware
+What is a hybrid cloud?|A combination of two or more distinct cloud infrastructures such as private and public bound together;A cloud using only one provider;An on-premises-only environment;A cloud with no virtualization
+What is infrastructure as code?|Provisioning and managing infrastructure through machine-readable definition files;Configuring servers manually via a console;Documenting infrastructure in spreadsheets;Writing code only for applications
+What is technical debt?|The future rework cost created by choosing an easy solution now instead of a better approach;Money owed to a software vendor;Unpaid licence fees;Hardware depreciation
+Which is a non-functional requirement?|The system must respond within 2 seconds for 95% of requests;Users can export a report to PDF;Users can reset their password;Managers can approve requests
+What is the purpose of software development and management?|Ensure applications meet stakeholder needs for functionality, reliability, maintainability, compliance and auditability;Authorize changes;Handle incidents;Manage supplier contracts
+Which best describes DevOps in this context?|A culture and set of practices bringing development and operations together to deliver faster and more reliably;A single tool;A team name;A replacement for ITIL
+What is the purpose of version control?|Track and manage changes to code, enabling collaboration and rollback;Store passwords;Replace testing;Schedule releases
+Which test level checks that independently built modules work together?|Integration testing;Unit testing;Acceptance testing;Load testing
+What does user acceptance testing confirm?|The software meets user needs and agreed acceptance criteria;Each function works in isolation;Code compiles;Servers are patched
+What is regression testing?|Verifying that changes have not broken existing functionality;Testing a new feature for the first time;Checking server capacity;Testing only security
+What does the shared responsibility model in cloud mean?|The provider secures the underlying infrastructure while the consumer remains responsible for its data, configuration and identities;The provider is responsible for everything;The consumer is responsible for everything;Nobody is responsible for security
+Which practice is directly involved in patching hypervisors and operating systems in the data centre?|Infrastructure and platform management;Software development and management;Deployment management;Service desk
+Which practice is directly involved in code review and branching strategy?|Software development and management;Infrastructure and platform management;Deployment management;Incident management
+Which practice owns promotion of builds across environments through the pipeline?|Deployment management;Software development and management;Service level management;Problem management
+Which of these is NOT a technical management practice?|Service level management;Deployment management;Infrastructure and platform management;Software development and management
+A failed deployment is reversed using a pre-defined plan that restores the previous state. What is this called?|Rollback;Roll forward;Release;Escalation
+What does immutable infrastructure mean?|Components are replaced with new versions rather than modified in place;Servers are never patched;Hardware is never replaced;Nothing is ever deployed
+Which concern is typical when moving to cloud platforms?|Dependency on the provider and portability, including an exit strategy;Eliminating all security responsibility;Removing the need for monitoring;Eliminating capacity planning
+In Scrum, what is a fixed-length iteration called?|Sprint;Epic;Backlog;Kanban card
+What is a core control mechanism in Kanban?|Limiting work in progress;Fixed-length sprints;Daily big-bang releases;Annual planning
+Which describes containers?|They package an application and its dependencies so it runs consistently across environments;They replace the need for operating systems;They are physical servers;They are a backup method
+What is the purpose of a staging environment?|To provide a production-like place to validate changes before going live;To host developers' personal code;To store backups;To archive logs
+Releasing a build to 5% of users first to watch behaviour is an example of:|Phased deployment;Big bang deployment;Pull deployment;Rollback
+What is a key advantage of automating deployment?|Repeatability and fewer human errors;Eliminating testing;Removing the need for change control entirely;Guaranteeing no failures
+What is configuration drift?|Gradual divergence of an environment's actual configuration from its intended baseline;A planned configuration change;A backup failure;A licence expiry
+How do the three technical practices relate to service management?|They apply technology management knowledge to support the products and services;They replace all service practices;They concern only finance;They concern only customers
+A build is moved from test to production by script, then marketing enables it for users. Which practices apply, in order?|Deployment management, then release management;Release management, then deployment management;Incident management, then problem management;Change enablement, then service design
+Which practice would define coding standards and non-functional requirements for new applications?|Software development and management;Deployment management;Infrastructure and platform management;Service desk
+What separates continuous deployment from continuous delivery?|In continuous deployment every change passing tests is released automatically, while continuous delivery keeps changes deployable on demand;The reverse;Nothing, they are identical;Continuous deployment applies only to hardware`;
+function decode(t,seed){let x=seed;const rnd=()=>(x=(x*1664525+1013904223)>>>0)/4294967296;
+ return t.split("\n").map(l=>{const[q,o]=l.split("|"),opts=o.split(";");
+  const idx=opts.map((_,i)=>i);for(let i=idx.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
+  return[q,idx.map(i=>opts[i]),idx.indexOf(0)]})}
+const PAPERS={1:{n:"Paper 1: ITIL 4 Foundation",qs:P1},2:{n:"Paper 2: Guiding Principles (advanced)",qs:decode(T2,11)},
+3:{n:"Paper 3: General Management Practices (advanced)",qs:decode(T3,23)},4:{n:"Paper 4: Service Management Practices (advanced)",qs:decode(T4,37)},5:{n:"Paper 5: Technical Management Practices (advanced)",qs:decode(T5,53)}};
 const L="ABCD",$=s=>document.querySelector(s),mem={};
+const pass=n=>Math.ceil(n*.65);
 const sg=k=>{try{const v=localStorage.getItem(k);if(v!==null)return v}catch(e){}return mem[k]??null};
 const ss=(k,v)=>{mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}};
 const hist=p=>{try{return JSON.parse(sg('itil_h'+p)||'[]')}catch(e){return[]}};
 let paper=1,ans={},done=false,email="";
 function histRender(){const h=hist(paper).slice().reverse(),qs=PAPERS[paper].qs;
- $('#hist').innerHTML=h.length?h.map(a=>`<details><summary>${a.t} — <b>${a.s}/40</b> (${a.w.length} wrong)</summary>`+(a.w.length?a.w.map(([i,y])=>`<div>Q${i+1}: ${y<0?'skipped':'you '+L[y]}, correct ${L[qs[i][2]]}</div>`).join(''):'Perfect score')+`</details>`).join(''):'<p class="note">No previous attempts for this paper yet.</p>';}
+ $('#hist').innerHTML=h.length?h.map(a=>`<details><summary>${a.t} — <b>${a.s}/${qs.length}</b> (${a.w.length} wrong)</summary>`+(a.w.length?a.w.map(([i,y])=>`<div>Q${i+1}: ${y<0?'skipped':'you '+L[y]}, correct ${L[qs[i][2]]}</div>`).join(''):'Perfect score')+`</details>`).join(''):'<p class="note">Paper 1 is unchanged (key derived earlier, verify disputed items). Papers 2–5 are advanced papers. Option order is shuffled and the key is stored by correct answer, not by position.</p>';}
 function show(p,open){paper=p;done=false;ans={};
  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',+b.dataset.p==p));
  $('#gate').style.display='block';$('#test').style.display='none';
  $('#gt').textContent=PAPERS[p].n+' · '+PAPERS[p].qs.length+' questions';
  $('#em').value=sg('itil_email')||'';histRender();$('#hist').style.display=open?'block':'none';window.scrollTo(0,0);}
-function render(){done=false;for(const k in ans)delete ans[k];$('#res').style.display='none';$('#sub').disabled=false;$('#prog').textContent='Answered 0 / 40';
- const qs=PAPERS[paper].qs;
+function render(){done=false;for(const k in ans)delete ans[k];$('#res').style.display='none';$('#sub').disabled=false;
+ const qs=PAPERS[paper].qs,n=qs.length;
+ $('#prog').textContent=`Answered 0 / ${n}`;$('#pm').textContent=`Pass mark: ${pass(n)} / ${n} (65%)`;
  $('#qs').innerHTML=qs.map((q,i)=>`<div class="q" id="q${i}"><p>${i+1}. ${q[0]}</p>`+q[1].map((o,j)=>`<label id="l${i}_${j}"><input type="radio" name="q${i}" value="${j}">${L[j]}. ${o}</label>`).join('')+`<div class="fb"></div></div>`).join('');
  document.querySelectorAll('#qs input').forEach(r=>r.onchange=()=>{
   if(done)return;const i=+r.name.slice(1);ans[i]=+r.value;
   qs[i][1].forEach((_,j)=>$('#l'+i+'_'+j).classList.toggle('sel',j==ans[i]));
-  $('#prog').textContent=`Answered ${Object.keys(ans).length} / 40`;});
+  $('#prog').textContent=`Answered ${Object.keys(ans).length} / ${n}`;});
 }
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>show(+b.dataset.p));
 $('#hb').onclick=()=>{const h=$('#hist');h.style.display=h.style.display=='none'?'block':'none'};
@@ -157,7 +280,7 @@ $('#start').onclick=()=>{const e=$('#em').value.trim();
  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){alert('Please enter a valid email address.');return}
  email=e;ss('itil_email',e);$('#gate').style.display='none';$('#test').style.display='block';render();window.scrollTo(0,0)};
 $('#sub').onclick=()=>{
- const qs=PAPERS[paper].qs,un=qs.map((_,i)=>i).filter(i=>!(i in ans));
+ const qs=PAPERS[paper].qs,n=qs.length,pm=pass(n),un=qs.map((_,i)=>i).filter(i=>!(i in ans));
  if(un.length&&!confirm(un.length+' question(s) unanswered (counted as wrong). Submit anyway?'))return;
  done=true;$('#sub').disabled=true;let s=0,wrong=[];
  qs.forEach((q,i)=>{
@@ -168,11 +291,11 @@ $('#sub').onclick=()=>{
   box.querySelector('.fb').innerHTML=ok?`<span style="color:var(--ok)">✔ Correct</span>`:`<span style="color:var(--no)">✘ ${i in ans?'Your answer: '+L[ans[i]]:'Not answered'} — Correct answer: ${L[q[2]]}</span>`;
  });
  const h=hist(paper);h.push({t:new Date().toLocaleString(),s,w:wrong.map(i=>[i,i in ans?ans[i]:-1])});ss('itil_h'+paper,JSON.stringify(h.slice(-20)));
- const pct=Math.round(s/40*100),verdict=s>=26?'Pass':'Below pass mark';
- const body=`ITIL 4 – ${PAPERS[paper].n}\nScore: ${s}/40 (${pct}%) – ${verdict}\nWrong: ${wrong.length}\n\n`+wrong.map(i=>`Q${i+1}: ${i in ans?'your '+L[ans[i]]:'skipped'}, correct ${L[qs[i][2]]}`).join('\n');
- const href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('ITIL 4 '+PAPERS[paper].n+' result: '+s+'/40')}&body=${encodeURIComponent(body)}`;
+ const pct=Math.round(s/n*100),verdict=s>=pm?'Pass':'Below pass mark';
+ const body=`ITIL 4 – ${PAPERS[paper].n}\nScore: ${s}/${n} (${pct}%) – ${verdict}\nWrong: ${wrong.length}\n\n`+wrong.map(i=>`Q${i+1}: ${i in ans?'your '+L[ans[i]]:'skipped'}, correct ${L[qs[i][2]]}`).join('\n');
+ const href=`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('ITIL 4 '+PAPERS[paper].n+' result: '+s+'/'+n)}&body=${encodeURIComponent(body)}`;
  const r=$('#res');r.style.display='block';
- r.innerHTML=`<div class="big">${s} / 40 (${pct}%)</div><div>${s>=26?'🎉 Pass':'Below pass mark (26)'} · ${wrong.length} wrong</div>`+
+ r.innerHTML=`<div class="big">${s} / ${n} (${pct}%)</div><div>${s>=pm?'🎉 Pass':'Below pass mark ('+pm+')'} · ${wrong.length} wrong</div>`+
   (wrong.length?`<p><b>Wrong questions (tap to jump):</b><br>${wrong.map(i=>`<a onclick="document.getElementById('q${i}').scrollIntoView({behavior:'smooth'})">Q${i+1}</a>`).join('')}</p>`:'<p>Perfect score!</p>')+
   `<a class="btn" href="${href}" target="_blank" rel="noopener">✉ Email result to ${email}</a><button class="sec" onclick="show(paper,true)">Previous attempts</button>`;
  window.scrollTo({top:0,behavior:'smooth'});
